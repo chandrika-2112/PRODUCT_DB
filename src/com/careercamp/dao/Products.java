@@ -13,26 +13,23 @@ public class Products {
 	public Products() //Constructor 
 	{	
 		Random R = new Random();
-		prodId = R.nextInt(1, 99); //Worried about two same ProdID but it will take to scan the DB
-		price =  Math.round(R.nextDouble(999)*100.0)/100.0;
-		discount = Math.round(R.nextDouble(101)*100.0)/100.0;
-		quantity = R.nextInt(1,26);
+		prodId = R.nextInt(99) + 1; // from R.nextInt(1, 99)
+		price = Math.round(R.nextDouble() * 999 * 100.0) / 100.0;
+		discount = Math.round(R.nextDouble() * 100 * 100.0) / 100.0;
+		quantity = R.nextInt(25) + 1;
 		prodName = generateString();
 		prodIndex++;
 	}
-			private String generateString() { // for Product names
-				char nameArray [] = new char[10];
-				Random R2 = new Random();
-				nameArray[0] = (char)R2.nextInt(65, 91); // First Letter Capital
-				for(int i=1;i<nameArray.length;i++)
-				{
-					
-					nameArray[i]= (char) R2.nextInt(97, 123);
-				}
-				String Name = new String(nameArray);
-				
-				return Name;
-	}
+	private String generateString() { // for Product names
+        char nameArray[] = new char[10];
+        Random R2 = new Random();
+        nameArray[0] = (char) (R2.nextInt(26) + 65); // Corrected: First Letter Capital A-Z
+        for (int i = 1; i < nameArray.length; i++) {
+            nameArray[i] = (char) (R2.nextInt(26) + 97); // Corrected: Remaining letters a-z
+        }
+        String Name = new String(nameArray);
+        return Name;
+    }
 			
 	public static void expand()							//Expanding Db
 	{
